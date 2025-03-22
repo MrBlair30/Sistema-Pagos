@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +33,12 @@ export class LoginComponent implements OnInit{
 
     if(auth){
       this.router.navigateByUrl("/admin");
+    }else{
+      Swal.fire({
+        title: "Error al iniciar sesión",
+        text: "El usuario o la contraseña son incorrectos",
+        icon: "error"
+      })
     }
 
   }
