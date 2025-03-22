@@ -1,0 +1,33 @@
+.container{
+    height: 100vh;
+    background-image: radial-gradient(circle, #444, #222);
+}
+
+mat-form-field{
+    display: block;
+    padding-top: 10px;
+}
+
+mat-card-title{
+    padding-bottom: 20px;
+    color: #ccc;    
+    font-family: sans-serif;
+    font-weight: bold;
+    text-shadow: 0 0 3px #ffabf3;
+}
+
+.login-form{
+    min-width: 300px;
+    max-width: 400px;
+    flex: auto;
+    align-content: center;
+    margin: auto;
+    margin-top: 10%;    
+    padding: 20px;
+    box-shadow: 0 0 10px #222;    
+}
+
+.login-button{
+    display: flex;
+    justify-content: end;
+}

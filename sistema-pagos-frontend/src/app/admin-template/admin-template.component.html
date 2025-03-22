@@ -1,0 +1,61 @@
+<!--Agregamos barra de navegación superior con mat-toolbar-->
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="myDrawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>SDP</span>
+    <span style="flex: auto;"></span>
+    <button mat-raised-button routerLink="/admin/home">Inicio</button>
+    <button mat-raised-button routerLink="/admin/profile">Perfil</button>
+
+    <button *ngIf="authService.roles.includes('ADMIN')" mat-raised-button [matMenuTriggerFor]="importMenu">
+        Importar
+        <mat-icon iconPositionEnd>keyboard_arrow_down</mat-icon>
+    </button>
+
+    <mat-menu #importMenu>
+        <button mat-menu-item routerLink="/admin/loadEstudiantes">Cargar Estudiantes</button>
+        <button mat-menu-item routerLink="/admin/loadPagos">Cargar Pagos</button>
+    </mat-menu>
+
+
+    <!--Boton que muestra el username del usuario al lado del botón salir-->
+    <button mat-button *ngIf="authService.isAuthenticated">
+        {{ authService.username }}
+    </button>
+    <!--Botón de logout-->
+    <button mat-flat-button color="accent" (click)="logout()">Salir</button>
+
+  </mat-toolbar>
+
+  <!--Agregamos barra lateral con mat-drawer-->
+  <mat-drawer-container>
+    <mat-drawer #myDrawer style="max-width: 180px;" opened="true" mode="side" position="start">
+        <mat-list>
+            <mat-list-item>
+                <button mat-button routerLink="/admin/dashboard">
+                    <mat-icon>dashboard</mat-icon>
+                    Dashboard
+                </button>                
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-button routerLink="/admin/estudiantes">
+                    <mat-icon>dashboard</mat-icon>
+                    Estudiantes
+                </button>                  
+            </mat-list-item>                  
+            <mat-list-item>
+                <button mat-button routerLink="/admin/pagos">
+                    <mat-icon>dashboard</mat-icon>
+                    Pagos
+                </button>
+            </mat-list-item>                              
+        </mat-list>
+    </mat-drawer>
+    <!--Contenido del mat-drawer-->
+    <mat-drawer-content style="background-color: #222;">
+        <div style="min-height: 1300px;">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
